@@ -18,7 +18,7 @@ app.secret_key = "super secret key"
 IMAGES_DIR = os.path.join(os.getcwd(), "images")
 
 connection = pymysql.connect(host="127.0.0.1",
-                             user="root",
+                             user="drevilbrain",
                              password="",
                              db="RecipePlanner",
                              charset="utf8mb4",
@@ -95,7 +95,7 @@ def loginAuth():
         hashedPassword = hashlib.sha256(plaintextPasword.encode("utf-8")).hexdigest()
 
         with connection.cursor() as cursor:
-            queryLogin = "SELECT * FROM person WHERE username = %s AND password = %s"
+            queryLogin = "SELECT * FROM Person WHERE username = %s AND password = %s"
             cursor.execute(queryLogin, (username, hashedPassword))
             
         data = cursor.fetchone()
