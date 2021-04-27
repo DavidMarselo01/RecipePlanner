@@ -95,7 +95,7 @@ def loginAuth():
         hashedPassword = hashlib.sha256(plaintextPasword.encode("utf-8")).hexdigest()
 
         with connection.cursor() as cursor:
-            queryLogin = "SELECT * FROM person WHERE username = %s AND password = %s"
+            queryLogin = "SELECT * FROM Person WHERE username = %s AND password = %s"
             cursor.execute(queryLogin, (username, hashedPassword))
             
         data = cursor.fetchone()
