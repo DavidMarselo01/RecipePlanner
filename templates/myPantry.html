@@ -54,6 +54,9 @@
             <a class="nav-link" href="/myPantry">My Pantry</a>
           </li>
           <li class="nav-item">
+            <a class="nav-link" href="/ingredients">Add Ingredients</a>
+          </li>
+          <li class="nav-item">
             <a class="nav-link" href="/logout">Logout</a>
           </li>
         </ul>
@@ -69,9 +72,11 @@
 <!-- Begin page content -->
 <main class="flex-shrink-0">
   <div class="container">
-    <h1>{{ username }}'s Pantry</h1>
-        <h2><a href="/ingredients">Add Ingredients to your Pantry</a></h2>
-        <table>
+        <div>
+            <p>{{ editIngrError }}</p>
+        </div>
+        <h1>{{ username }}'s Pantry</h1>
+        <table class="table table-hover table-sm">
         <th>Ingredient Name</th>
         <th>Measure Unit</th>
         <th>Quantity</th>
@@ -104,9 +109,6 @@
         {% endfor %}
 
     </table>
-    <div>
-        <p>{{ editIngrError }}</p>
-    </div>
   </div>
 </main>
 

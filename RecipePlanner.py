@@ -204,7 +204,8 @@ def deleteIngredient():
         ingredient_name = data["ingredient_name"]
         deletePantryIngr(username, ingredient_name)
         dataPantry = getPantry()
-        return render_template('myPantry.html', dataPantry = dataPantry)
+        return render_template('myPantry.html', dataPantry = dataPantry,
+                                username = username)
 
 #Add Ingredients
 #Select all the ingredient names and their measure unit
