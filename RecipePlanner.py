@@ -95,7 +95,7 @@ def loginAuth():
         hashedPassword = hashlib.sha256(plaintextPasword.encode("utf-8")).hexdigest()
 
         with connection.cursor() as cursor:
-            queryLogin = "SELECT * FROM person WHERE username = %s AND password = %s"
+            queryLogin = "SELECT * FROM Person WHERE username = %s AND password = %s"
             cursor.execute(queryLogin, (username, hashedPassword))
             
         data = cursor.fetchone()
@@ -204,7 +204,8 @@ def deleteIngredient():
         ingredient_name = data["ingredient_name"]
         deletePantryIngr(username, ingredient_name)
         dataPantry = getPantry()
-        return render_template('myPantry.html', dataPantry = dataPantry)
+        return render_template('myPantry.html', dataPantry = dataPantry,
+                                username = username)
 
 #Add Ingredients
 #Select all the ingredient names and their measure unit
