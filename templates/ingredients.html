@@ -82,7 +82,13 @@
         {% for line in dataAllIngredients %}
         <tr>
             <td>{{line.ingredient_name}}</td>
-            <td>{{line.measure_unit}}</td>
+            <td>
+              {% if 'NaN' == line.measure_unit %}
+                <p></p>
+              {% else %}
+                <p>{{line.measure_unit}}</p>
+              {% endif %}
+            </td>
             <td>
                 <form action="/addIngredient" method = "POST">
                     <input type="text" name = "quantity" placeholder="quantity" required/>

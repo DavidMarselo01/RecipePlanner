@@ -269,7 +269,7 @@ def addIngredient():
             dataAllIngredients = getAllIngredients()
             if (checkIfIngrInPantry(ingredient_name, username) == False):
                 insertIntoPantry(ingredient_name, username, quantity, measure_unit)
-                successAdded = quantity + " " + measure_unit + " of " + ingredient_name + " added to your Pantry"
+                successAdded = quantity + " " + str(measure_unit) + " of " + ingredient_name + " added to your Pantry"
                 return render_template('ingredients.html', dataAllIngredients = dataAllIngredients, successAdded = successAdded)
             elif (checkIfIngrInPantry(ingredient_name, username) == True):
                 quantityPrev = getQuantityIngrPantry(ingredient_name, username)
@@ -277,7 +277,7 @@ def addIngredient():
                 quantityPrev = quantityPrev[0]["quantity"]
                 quantity = float(quantity)
                 quantity += float(quantityPrev)
-                successAdded = ingredient_name + " " + "was updated from " + quantityPrev + " " + measure_unit + " to " + str(quantity) + " " + measure_unit
+                successAdded = ingredient_name + " " + "was updated from " + quantityPrev + " " + str(measure_unit) + " to " + str(quantity) + " " + measure_unit
                 editPantryIngr(username, ingredient_name, quantity)
                 return render_template('ingredients.html', 
                                        dataAllIngredients = dataAllIngredients, 
