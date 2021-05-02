@@ -47,6 +47,7 @@ CREATE TABLE Pantry (
         ingredient_name VARCHAR(32),
         username VARCHAR(32),
 		quantity float,
+        measure_unit VARCHAR(32),
         PRIMARY KEY (ingredient_name, username),
         FOREIGN KEY (username) REFERENCES Person (username),
         FOREIGN KEY (ingredient_name) REFERENCES Ingredients (ingredient_name)
