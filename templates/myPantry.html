@@ -89,7 +89,6 @@
             <td>{{line.quantity}}</td>
             <td>
                 <form action="/editIngredient" method = "POST">
-                    <br>
                     <input type="text" name = "quantity" placeholder="quantity" required/>
                     <input type="hidden" name="ingredient_name" value="{{line.ingredient_name}}">
                     <input type="hidden" name="measure_unit" value="{{line.measure_unit}}">
@@ -99,7 +98,6 @@
             </td>
             <td>
                 <form action="/deleteIngredient" method = "POST">
-                    <br>
                     <input type="hidden" name="ingredient_name" value="{{line.ingredient_name}}">
                     <input type="hidden" name="username" value="{{line.username}}">
                     <input type="submit" value = Delete />
@@ -114,7 +112,7 @@
 
 <footer class="footer mt-auto py-3 bg-light">
   <div class="container">
-    <span class="text-muted">Place sticky footer content here.</span>
+    <span class="text-muted">Copyright &copy; 2021 RecipePlanner</span>
   </div>
 </footer>
 
