@@ -1,0 +1,32 @@
+<html>
+    <head>
+        <title>RecipePlanner</title>
+    </head>
+    <body>
+        <h1>Ingredients</h1>
+        <table>
+        <th>Ingredient Name</th>
+        <th>Measure Unit</th>
+        <th>Quantity</th>
+        {% for line in dataAllIngredients %}
+        <tr>
+            <td>{{line.ingredient_name}}</td>
+            <td>{{line.measure_unit}}</td>
+            <td>
+                <form action="/addIngredient" method = "POST">
+                    <br>
+                    <input type="text" name = "quantity" placeholder="quantity" required/>
+                    <input type="hidden" name="ingredient_name" value="{{line.ingredient_name}}">
+                    <input type="hidden" name="measure_unit" value="{{line.measure_unit}}">
+                    <input type="submit" value = Add />
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+
+    </table>
+    <div><p>{{successAdded}}</p></div>
+    <div><p>{{ quantityError }}</p></div>
+    <li><a href="/home">Main Page</a></li>
+    </body>
+</html>

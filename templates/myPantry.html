@@ -1,0 +1,48 @@
+<html>
+    <head>
+        <title>RecipePlanner</title>
+    </head>
+    <body>
+        <h1>{{ username }}'s Pantry</h1>
+        <h2><a href="/ingredients">Add Ingredients to your Pantry</a></h2>
+        <table>
+        <th>Ingredient Name</th>
+        <th>Measure Unit</th>
+        <th>Quantity</th>
+        <th>Edit Quantity</th>
+        <th>Delete</th>
+        {% for line in dataPantry %}
+        <tr>
+            <td>{{line.ingredient_name}}</td>
+            <td>{{line.measure_unit}}</td>
+            <td>{{line.quantity}}</td>
+            <td>
+                <form action="/editIngredient" method = "POST">
+                    <br>
+                    <input type="text" name = "quantity" placeholder="quantity" required/>
+                    <input type="hidden" name="ingredient_name" value="{{line.ingredient_name}}">
+                    <input type="hidden" name="measure_unit" value="{{line.measure_unit}}">
+                    <input type="hidden" name="username" value="{{line.username}}">
+                    <input type="submit" value = Edit />
+                </form>
+            </td>
+            <td>
+                <form action="/deleteIngredient" method = "POST">
+                    <br>
+                    <input type="hidden" name="ingredient_name" value="{{line.ingredient_name}}">
+                    <input type="hidden" name="username" value="{{line.username}}">
+                    <input type="submit" value = Delete />
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+
+    </table>
+    <div>
+        <p>{{ editIngrError }}</p>
+    </div>
+        <div> 
+                <p><a href="/home">Main Page</a></p>
+        </div>
+    </body>
+</html>
