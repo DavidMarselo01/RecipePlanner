@@ -46,6 +46,7 @@ CREATE TABLE RecipeIngredients (
 CREATE TABLE Pantry (
         ingredient_name VARCHAR(32),
         username VARCHAR(32),
+		quantity float,
         PRIMARY KEY (ingredient_name, username),
         FOREIGN KEY (username) REFERENCES Person (username),
         FOREIGN KEY (ingredient_name) REFERENCES Ingredients (ingredient_name)
