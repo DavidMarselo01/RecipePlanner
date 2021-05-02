@@ -18,8 +18,8 @@ app.secret_key = "super secret key"
 IMAGES_DIR = os.path.join(os.getcwd(), "images")
 
 connection = pymysql.connect(host="127.0.0.1",
-                             user="drevilbrain",
-                             password="",
+                             user="root",
+                             password="Marselo01",
                              db="RecipePlanner",
                              charset="utf8mb4",
                              port=3306,
