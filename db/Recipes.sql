@@ -16,6 +16,9 @@ VALUES ('Salt', 'Cacio e Pepe', 0);
 INSERT INTO RecipeIngredients (ingredient_name, recipe_name, quantity)
 VALUES ('Black pepper', 'Cacio e Pepe', 0);
 
+INSERT INTO tag (recipe_name, tag_name)
+VALUES('Cacio e Pepe', 'vegetarian');
+
 INSERT INTO Recipes (recipe_name, cook_time, picture_path, instructions)
 VALUES ('Garlic Noodles', 15, 'garlic_noodles.jpg',
 '1. Bring pot of water to a boil. Sauce will be very salty, so no need to salt the pasta water. Add spaghetti.
@@ -93,6 +96,9 @@ VALUES ('Crispy & Fluffy Roast Potatoes', 80, 'potatoes.jpg',
 11. Bake potatoes for 20 minutes without moving them. Then, flip and turn potatoes and return to oven. Repeat every 15-20 minutes until potatoes are the desired darkness (typically 45 minutes to 1 hour total).
 12. Remove potatoes from oven. Toss with reserved garlic, and add more salt or pepper if desired. Serve.');
 
+INSERT INTO tag (recipe_name, tag_name)
+VALUES('Crispy & Fluffy Roast Potatoes', 'vegetarian');
+
 INSERT INTO RecipeIngredients (recipe_name, ingredient_name, quantity)
 VALUES ('Crispy & Fluffy Roast Potatoes', 'Russet potato', 70);
 INSERT INTO RecipeIngredients (recipe_name, ingredient_name, quantity)
@@ -135,3 +141,6 @@ INSERT INTO RecipeIngredients (recipe_name, ingredient_name, quantity)
 VALUES ('Menemen', 'Paprika', 1);
 INSERT INTO RecipeIngredients (recipe_name, ingredient_name, quantity)
 VALUES ('Menemen', 'Olive oil', 0);
+
+INSERT INTO tag (recipe_name, tag_name)
+VALUES('Menemen', 'vegetarian');
