@@ -85,7 +85,12 @@
         {% for line in dataPantry %}
         <tr>
             <td>{{line.ingredient_name}}</td>
-            <td>{{line.measure_unit}}</td>
+            <td>
+              {% if 'NaN' == line.measure_unit %}
+              {% else %}
+                <p>{{line.measure_unit}}</p>
+              {% endif %}
+            </td>
             <td>{{line.quantity}}</td>
             <td>
                 <form action="/editIngredient" method = "POST">
