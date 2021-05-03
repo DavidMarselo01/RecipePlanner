@@ -11,6 +11,7 @@ CREATE TABLE Recipes (
         recipe_name VARCHAR(32),
         instructions VARCHAR(3000),
         cook_time INT,
+		picture_path VARCHAR(64),
         PRIMARY KEY (recipe_name)
 );
 

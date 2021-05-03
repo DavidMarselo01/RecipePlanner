@@ -1,5 +1,5 @@
-INSERT INTO Recipes (recipe_name, cook_time, instructions)
-VALUES ('Cacio e Pepe', 15,
+INSERT INTO Recipes (recipe_name, cook_time, picture_path, instructions)
+VALUES ('Cacio e Pepe', 15, 'cacio.jpg',
 '1. Bring pot of salted water to a boil, add spaghetti.
 2. Cook spaghetti to desired tenderness, then drain, reserving some pasta water, and move spaghetti to pan.
 3. Grate Pecorino Romano over pasta. Then, add a splash of pasta water and stire.
@@ -16,8 +16,8 @@ VALUES ('Salt', 'Cacio e Pepe', 0);
 INSERT INTO RecipeIngredients (ingredient_name, recipe_name, quantity)
 VALUES ('Black pepper', 'Cacio e Pepe', 0);
 
-INSERT INTO Recipes (recipe_name, cook_time, instructions)
-VALUES ('Garlic Noodles', 15,
+INSERT INTO Recipes (recipe_name, cook_time, picture_path, instructions)
+VALUES ('Garlic Noodles', 15, 'garlic_noodles.jpg',
 '1. Bring pot of water to a boil. Sauce will be very salty, so no need to salt the pasta water. Add spaghetti.
 2. While spaghetti cooks, crush and mince garlic. 
 3. Melt butter in a pan over medium heat. Add garlic and cook around 2 minutes. Garlic should be fragrant but not brown.
@@ -38,8 +38,8 @@ VALUES ('Soy sauce', 'Garlic Noodles', 0);
 INSERT INTO RecipeIngredients (ingredient_name, recipe_name, quantity)
 VALUES ('Fish sauce', 'Garlic Noodles', 0);
 
-INSERT INTO Recipes (recipe_name, cook_time, instructions)
-VALUES ('Napolitan', 30,
+INSERT INTO Recipes (recipe_name, cook_time, picture_path, instructions)
+VALUES ('Napolitan', 30, 'napolitan.jpg',
 '1. Mince garlic. Thinly slice the onion, sausages, bell pepper, and mushrooms.
 2. Bring pot of salted water to a boil.
 3. Add pasta to water.
@@ -78,8 +78,8 @@ VALUES ('Napolitan', 'Salt', 0);
 INSERT INTO RecipeIngredients (recipe_name, ingredient_name, quantity)
 VALUES ('Napolitan', 'Black pepper', 0);
 
-INSERT INTO Recipes (recipe_name, cook_time, instructions)
-VALUES ('Crispy & Fluffy Roast Potatoes', 80,
+INSERT INTO Recipes (recipe_name, cook_time, picture_path, instructions)
+VALUES ('Crispy & Fluffy Roast Potatoes', 80, 'potatoes.jpg',
 '1. Preheat oven to 450F or 230C.
 2. Peel potatoes and cut into medium size chunks, about 1.5 inches in length. If the pieces are too small, they can fall apart in later stages, so be careful.
 3. Bring 2 liters of water to boil in a pot. Add 2 tablespoons kosher salt (less if using fine salt) and the baking soda.
@@ -106,8 +106,8 @@ VALUES ('Crispy & Fluffy Roast Potatoes', 'Salt', 0);
 INSERT INTO RecipeIngredients (recipe_name, ingredient_name, quantity)
 VALUES ('Crispy & Fluffy Roast Potatoes', 'Black pepper', 0);
 
-INSERT INTO Recipes (recipe_name, cook_time, instructions)
-VALUES ('Menemen', 20,
+INSERT INTO Recipes (recipe_name, cook_time, picture_path, instructions)
+VALUES ('Menemen', 20, 'menemen.jpg',
 '1. Finely dice onion and long green pepper.
 2. Chop tomatoes. Alternatively, grate tomatoes using large side of a box grater.
 3. Heat 3 tablespoons olive oil over low heat. Once barely warm, add paprika, onion, and long green pepper. Season generously with salt and pepper.
