@@ -19,8 +19,8 @@ IMAGES_DIR = os.path.join(os.getcwd(), "images")
 app.debug = True
 
 connection = pymysql.connect(host="127.0.0.1",
-                             user="root",
-                             password="Marselo01",
+                             user="drevilbrain",
+                             password="",
                              db="RecipePlanner",
                              charset="utf8mb4",
                              port=3306,
@@ -171,11 +171,7 @@ def viewRecipe():
         #Get all the data from the form that was submitted in myPantry.html
         data = request.form
         recipe_name = data["recipe_name"]
-<<<<<<< HEAD
         instructions = data["instructions"]
-=======
-        instructions = data["instructions"] 
->>>>>>> b57cfc88d18db3b6fa11736647f711481ceda3c7
         instructions = instructions.replace('\n', '<br>');
         cook_time = data["cook_time"]
         picture_path = data["picture_path"]
