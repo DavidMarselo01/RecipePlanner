@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Recipe</title>
+</head>
+
+<body>
+	<table class="table table-hover table-sm">
+        <th>Recipe Name</th>
+        <th>Photo</th>
+        <th>Cook Time</th>
+        <th>Instructions</th>
+        <tr>
+            <td>{{recipe_name}}</td>
+            <td>
+              <img src="../static/img/recipes/{{picture_path}}" width="200" />
+            </td>
+            <td>
+                {{cook_time}}
+            </td>
+            <td>
+              <p>{{instructions}}</p>
+            </td>
+        </tr>
+    </table>
+    <table class="table table-hover table-sm">
+        <th>Ingredient Name</th>
+        <th>Quantity</th>
+        <th>Measure Unit</th>
+        <tr>
+        	{% for line in recipe_ingr %}
+            <td>{{line.ingredient_name}}</td>
+            <td>{{line.quantity}}<td>
+            <td>{{line.measure_unit}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+	<a href="/">Go back Home</a>
+</body>
+
+</html>

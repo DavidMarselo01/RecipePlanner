@@ -16,6 +16,7 @@ import time
 app = Flask(__name__)
 app.secret_key = "super secret key"
 IMAGES_DIR = os.path.join(os.getcwd(), "images")
+app.debug = True
 
 connection = pymysql.connect(host="127.0.0.1",
                              user="root",
@@ -126,9 +127,109 @@ def logout():
 @app.route('/home')
 @login_required
 def home():
-    return render_template('home.html', username = session['username'])
+    dataAllRecipes = getAllRecipes()
+    return render_template('home.html', username = session['username'],
+                           dataAllRecipes = dataAllRecipes)
 
+#Recipes
+def getAllRecipes():
+    query = "SELECT * FROM Recipes"
+    with connection.cursor() as cursor:
+        cursor.execute(query)
+    cursor.close()
+    dataAllRecipes = cursor.fetchall()
+    return dataAllRecipes
+
+def getOneRecipe(recipe_name):
+    query = "SELECT * FROM Recipes WHERE recipe_name = %s"
+    with connection.cursor() as cursor:
+        cursor.execute(query, (recipe_name))
+    cursor.close()
+    one_recipe = cursor.fetchall()
+    return one_recipe
+
+def getIngrForRecipe(recipe_name):
+    query = "SELECT * FROM RecipeIngredients WHERE recipe_name = %s"
+    with connection.cursor() as cursor:
+        cursor.execute(query, (recipe_name))
+    cursor.close()
+    recipeIngr = cursor.fetchall()
+    return recipeIngr
+
+def getMeasureUnit(ingredient_name):
+    query = "SELECT measure_unit FROM Ingredients WHERE ingredient_name = %s"
+    with connection.cursor() as cursor:
+        cursor.execute(query, (ingredient_name))
+    cursor.close()
+    measure_unit = cursor.fetchall()
+    return measure_unit
+
+@app.route('/viewRecipe', methods=["POST"])
+def viewRecipe():
+    if request.form:
+        #Get all the data from the form that was submitted in myPantry.html
+        data = request.form
+        recipe_name = data["recipe_name"]
+        instructions = data["instructions"] 
+        cook_time = data["cook_time"]
+        picture_path = data["picture_path"]
+        
+        recipe_ingr = getIngrForRecipe(recipe_name)
+        for ingr in recipe_ingr:
+            ingredient_name = ingr["ingredient_name"]
+            measure_unit_list = getMeasureUnit(ingredient_name)
+            measure_unit_string = measure_unit_list[0]["measure_unit"]
+            if (measure_unit_string == "NaN"):
+                measure_unit_string = ''
+            ingr["measure_unit"] = measure_unit_string
+        
+        return render_template("recipeView.html", recipe_name = recipe_name,
+                               picture_path = picture_path,
+                               cook_time = cook_time,
+                               instructions = instructions,
+                               recipe_ingr = recipe_ingr)
+    
+@app.route('/myRecipes', methods=["GET"])
+def myRecipes():
+    username = session['username']
+    usersPantryData = getUsersPantry(username)
+    print(usersPantryData)
+    
+    allRecipes = getAllRecipes()
+    
+    recipes_to_display = []
+    for recipe in allRecipes:
+        recipeIngr = getIngrForRecipe(recipe["recipe_name"])
+        add_recipe = 0
+        for ingr in recipeIngr:
+            ingredient_name_recipe = ingr["ingredient_name"]
+            quantity_recipe = ingr["quantity"]
+            for pantryIngr in usersPantryData:
+                if ingredient_name_recipe == pantryIngr["ingredient_name"]:
+                    quant = float(quantity_recipe) - float(pantryIngr["quantity"])
+                    if quant <= 0:
+                        add_recipe += 1
+        if len(recipeIngr) == add_recipe:
+            recipes_to_display.append(recipe)
+                        
+            #if ingredient_name_recipe not in usersPantryData.values()
+    return render_template("myRecipes.html", recipes_to_display = recipes_to_display,
+                           usersPantryData = usersPantryData,
+                           allRecipes = allRecipes,
+                           recipeIngr = recipeIngr)
+        
+        
+    
+        
+        
 #Pantry
+def getUsersPantry(username):
+    query = "SELECT * FROM Pantry WHERE username = %s"
+    with connection.cursor() as cursor:
+        cursor.execute(query, (username))
+    cursor.close()
+    usersPantry = cursor.fetchall()
+    return usersPantry
 def getPantry():
     query = "SELECT ingredient_name, username, quantity, measure_unit FROM Pantry"
     with connection.cursor() as cursor:
@@ -282,16 +383,36 @@ def addIngredient():
                 return render_template('ingredients.html', 
                                        dataAllIngredients = dataAllIngredients, 
                                        successAdded = successAdded)
-                
+            
+
+#Tag
+def getTagRecipes(tag_name):
+    query = "SELECT * FROM tag WHERE tag_name = %s"
+    with connection.cursor() as cursor:
+        cursor.execute(query, (tag_name))
+    cursor.close()
+    tagRecipes = cursor.fetchall()
+    return tagRecipes
+@app.route("/searchTag", methods=["POST"])
+def searchTag():
+    if request.form:
+        data = request.form
+        tag_name = data["tagSearch"]
+        allTagRecipesNames = getTagRecipes(tag_name)
+        recipes_to_display = []
+        for tag in allTagRecipesNames:
+            recipe_name = tag["recipe_name"]
+            all_recipe_info = getOneRecipe(recipe_name)
+            recipes_to_display.append(all_recipe_info[0])
+        return  render_template('tagView.html', 
+                                recipes_to_display = recipes_to_display)
+        
+                      
 
 
 if __name__ == "__main__":
     if not os.path.isdir("images"):
         os.mkdir(IMAGES_DIR)
-    app.run('127.0.0.1', 8080, debug = True)
+    app.run('127.0.0.1', 8080)
     
-    
-#EVERYTHING TO DO WITH IMAGES (UPLOAD AND SEE YOU IMAGES OR IMAGES OF YOUR FRIENDS)
 
-#1. Render the upload.html, in which we have a form with an action to go the 
-    #/uploadImage path with method post

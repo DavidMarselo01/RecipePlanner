@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	<table class="table table-hover table-sm">
+        <th>Recipe Name</th>
+        <th>Photo</th>
+        <th>Cook Time</th>
+        <th>View</th>
+        {% for line in recipes_to_display %}
+        <tr>
+            <td>{{line.recipe_name}}</td>
+            <td>
+              <img src="../static/img/recipes/{{line.picture_path}}" width="200" />
+            </td>
+            <td>
+                {{line.cook_time}}
+            </td>
+            <td>
+              <form action="/viewRecipe" method="POST">
+                    <input type="hidden" name="recipe_name" value="{{line.recipe_name}}">
+                    <input type="hidden" name="instructions" value="{{line.instructions}}">
+                    <input type="hidden" name="cook_time" value="{{line.cook_time}}">
+                    <input type="hidden" name="picture_path" value="{{line.picture_path}}">
+                    <input type="submit" value= 'View' />
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

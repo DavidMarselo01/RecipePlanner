@@ -68,6 +68,13 @@
 </header>
 
 <main>
+  <br>
+  <br>
+  <br>
+  <form action="/searchTag" method = "POST">
+                    <input type="text" name = "tagSearch" placeholder="tag" required/>
+                    <input type="submit" value = Search />
+  </form>
 
   <section class="py-5 text-center container">
     <div class="row py-lg-5">
@@ -81,6 +88,33 @@
       </div>
     </div>
   </section>
+
+  <table class="table table-hover table-sm">
+        <th>Recipe Name</th>
+        <th>Photo</th>
+        <th>Cook Time</th>
+        <th>View</th>
+        {% for line in dataAllRecipes %}
+        <tr>
+            <td>{{line.recipe_name}}</td>
+            <td>
+              <img src="../static/img/recipes/{{line.picture_path}}" width="200" />
+            </td>
+            <td>
+                {{line.cook_time}}
+            </td>
+            <td>
+              <form action="/viewRecipe" method="POST">
+                    <input type="hidden" name="recipe_name" value="{{line.recipe_name}}">
+                    <input type="hidden" name="instructions" value="{{line.instructions}}">
+                    <input type="hidden" name="cook_time" value="{{line.cook_time}}">
+                    <input type="hidden" name="picture_path" value="{{line.picture_path}}">
+                    <input type="submit" value= 'View' />
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
 
   <div class="album py-5 bg-light">
     <div class="container">
