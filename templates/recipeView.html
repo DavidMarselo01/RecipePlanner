@@ -21,7 +21,9 @@
                 {{cook_time}}
             </td>
             <td>
+			  {% autoescape false %}
               <p>{{instructions}}</p>
+			  {% endautoescape %}
             </td>
         </tr>
     </table>

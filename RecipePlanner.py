@@ -171,6 +171,7 @@ def viewRecipe():
         data = request.form
         recipe_name = data["recipe_name"]
         instructions = data["instructions"] 
+        instructions = instructions.replace('\n', '<br>');
         cook_time = data["cook_time"]
         picture_path = data["picture_path"]
         
