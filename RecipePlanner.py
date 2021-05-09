@@ -32,7 +32,8 @@ connection = pymysql.connect(host="127.0.0.1",
 def index():
     if "username" in session:
         return redirect(url_for("home"))
-    return render_template("index.html")
+    dataAllRecipes = getAllRecipes()
+    return render_template("index.html", dataAllRecipes = dataAllRecipes)
 
 #LOGGING IN
 
@@ -170,7 +171,8 @@ def viewRecipe():
         #Get all the data from the form that was submitted in myPantry.html
         data = request.form
         recipe_name = data["recipe_name"]
-        instructions = data["instructions"] 
+        instructions = data["instructions"]
+        instructions = instructions.replace('\n', '<br>');
         cook_time = data["cook_time"]
         picture_path = data["picture_path"]
         
@@ -213,7 +215,8 @@ def myRecipes():
             recipes_to_display.append(recipe)
                         
             #if ingredient_name_recipe not in usersPantryData.values()
-    return render_template("myRecipes.html", recipes_to_display = recipes_to_display,
+    return render_template("myRecipes.html", username = session['username'], 
+                           recipes_to_display = recipes_to_display,
                            usersPantryData = usersPantryData,
                            allRecipes = allRecipes,
                            recipeIngr = recipeIngr)
@@ -404,7 +407,7 @@ def searchTag():
             recipe_name = tag["recipe_name"]
             all_recipe_info = getOneRecipe(recipe_name)
             recipes_to_display.append(all_recipe_info[0])
-        return  render_template('tagView.html', 
+        return  render_template('tagView.html', tag_name = tag_name, 
                                 recipes_to_display = recipes_to_display)
         
                       
