@@ -378,7 +378,7 @@ def addIngredient():
                 quantityPrev = quantityPrev[0]["quantity"]
                 quantity = float(quantity)
                 quantity += float(quantityPrev)
-                successAdded = ingredient_name + " " + "was updated from " + quantityPrev + " " + str(measure_unit) + " to " + str(quantity) + " " + measure_unit
+                successAdded = ingredient_name + " " + "was updated from " + str(quantityPrev) + " " + str(measure_unit) + " to " + str(quantity) + " " + measure_unit
                 editPantryIngr(username, ingredient_name, quantity)
                 return render_template('ingredients.html', 
                                        dataAllIngredients = dataAllIngredients, 
