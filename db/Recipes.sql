@@ -2,7 +2,7 @@ INSERT INTO Recipes (recipe_name, cook_time, picture_path, instructions)
 VALUES ('Cacio e Pepe', 15, 'cacio.jpg',
 '1. Bring pot of salted water to a boil, add spaghetti.
 2. Cook spaghetti to desired tenderness, then drain, reserving some pasta water, and move spaghetti to pan.
-3. Grate Pecorino Romano over pasta. Then, add a splash of pasta water and stire.
+3. Grate Pecorino Romano over pasta. Then, add a splash of pasta water and stir.
 4. Continue adding cheese & pasta water while stirring. Eventually a creamy sauce should form.
 5. Generously add black pepper and stir.
 6. Serve on plates or bowls. Serves 2 or 3.');
